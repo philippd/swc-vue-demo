@@ -1,0 +1,4 @@
+html {
+  /* Reset the line-height which Vuetify sets to 1.5, breaking some of the SIX styles */
+  line-height: unset;
+}

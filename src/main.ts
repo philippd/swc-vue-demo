@@ -1,16 +1,13 @@
-import './assets/main.css'
-// TODO: This import breaks some of the SIX Web Components styles
-//import 'vuetify/styles'
-import '@six-group/ui-library/dist/ui-library/ui-library.css'
-
+import { ComponentLibrary } from '@six-group/ui-library-vue'
 import { createApp } from 'vue'
+import { createVuetify } from 'vuetify'
 import App from './App.vue'
 import router from './router'
-import { ComponentLibrary } from '@six-group/ui-library-vue'
-import { createVuetify } from 'vuetify'
 
-// Styles
 import '@mdi/font/css/materialdesignicons.css'
+import 'vuetify/styles'
+import '@six-group/ui-library/dist/ui-library/ui-library.css'
+import './assets/main.css'
 
 const vuetify = createVuetify({
   theme: {
