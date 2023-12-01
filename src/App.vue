@@ -15,45 +15,57 @@ const leftSidebarOpen = ref(true)
 </script>
 
 <template>
-  <v-app>
-    <six-root>
-      <six-header
-        slot="header"
-        :open-hamburger-menu="leftSidebarOpen"
-        @six-header-hamburger-menu-clicked="leftSidebarOpen = !leftSidebarOpen"
-      >
-        <six-menu slot="app-switcher-menu">
-          <six-menu-item>App 1</six-menu-item>
-          <six-menu-item>App 2</six-menu-item>
-        </six-menu>
-        <six-menu slot="profile-menu">
-          <six-menu-item><b>Heinz Meier</b><br />heinz.meier@demo.com</six-menu-item>
-          <six-menu-item value="change-password">Change password</six-menu-item>
-          <six-menu-item value="logout">Logout</six-menu-item>
-        </six-menu>
-        <six-avatar initials="HM" slot="profile-avatar"></six-avatar>
-      </six-header>
-      <six-sidebar slot="left-sidebar" position="left" :open="leftSidebarOpen">
-        <six-sidebar-item-group
-          @click="$router.push('/')"
-          name="SIX Components"
-          icon="home"
-        ></six-sidebar-item-group>
-        <six-sidebar-item-group
-          @click="$router.push('/vuetify')"
-          name="Vuetify Components"
-          icon="assignment"
-        ></six-sidebar-item-group>
-      </six-sidebar>
-      <div slot="main">
-        <RouterView />
-      </div>
-    </six-root>
-  </v-app>
+  <six-root>
+    <six-header
+      slot="header"
+      :open-hamburger-menu="leftSidebarOpen"
+      @six-header-hamburger-menu-clicked="leftSidebarOpen = !leftSidebarOpen"
+    >
+      <six-menu slot="app-switcher-menu">
+        <six-menu-item>App 1</six-menu-item>
+        <six-menu-item>App 2</six-menu-item>
+      </six-menu>
+      <six-menu slot="profile-menu">
+        <six-menu-item><b>Heinz Meier</b><br />heinz.meier@demo.com</six-menu-item>
+        <six-menu-item value="change-password">Change password</six-menu-item>
+        <six-menu-item value="logout">Logout</six-menu-item>
+      </six-menu>
+      <six-avatar initials="HM" slot="profile-avatar"></six-avatar>
+    </six-header>
+    <six-sidebar slot="left-sidebar" position="left" :open="leftSidebarOpen">
+      <six-sidebar-item-group
+        @click="$router.push('/')"
+        :open="$router.currentRoute.value.name === 'home'"
+        name="SIX Components"
+        icon="home"
+      ></six-sidebar-item-group>
+      <six-sidebar-item-group
+        @click="$router.push('/vuetify')"
+        :open="$router.currentRoute.value.name === 'vuetify'"
+        name="Vuetify Components"
+        icon="assignment"
+      ></six-sidebar-item-group>
+    </six-sidebar>
+    <div slot="main">
+      <RouterView />
+    </div>
+  </six-root>
 </template>
 
-<style scoped>
+<style>
 six-root {
   height: 100vh;
+  position: relative;
+}
+
+.six-toast-stack {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: var(--six-z-index-toast);
+  width: 28rem;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
 }
 </style>
